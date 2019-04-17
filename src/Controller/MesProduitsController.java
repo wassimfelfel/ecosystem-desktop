@@ -97,6 +97,7 @@ public class MesProduitsController {
     private ClientController clientController;
 
     public Produit currentProduit;
+    
 
     ProduitService ps = new ProduitService();
     UserService us = new UserService();
@@ -151,6 +152,8 @@ public class MesProduitsController {
         return this.currentProduit;
     }
 
+    
+     
     public ObservableList<entities.Produit> prodsOL = FXCollections.observableArrayList();
 
     public void populateProduitsTable() throws SQLException {
@@ -211,6 +214,49 @@ public class MesProduitsController {
 
     }
     
+    public void populateProduitsTableStatique() throws SQLException {
+
+
+
+                tableViewProds.getItems().clear();
+          
+
+                ps.afficherProduitsParTypeEtUser(cbViewTypes.getValue().toString(), connectedProduitsUser).forEach(p -> {
+                    prodsOL.add(p);
+                });
+
+                nomId.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                prixId.setCellValueFactory(new PropertyValueFactory<>("prix"));
+                descriptionId.setCellValueFactory(new PropertyValueFactory<>("description"));
+                emailId.setCellValueFactory(new PropertyValueFactory<>("userEmail"));
+
+                tableViewProds.setItems(prodsOL);
+
+
+
+        
+        
+
+                tableViewProds.getItems().clear();
+              
+
+                ps.afficherProduitsParCategorieEtUser(cbViewCategories.getValue().toString(), connectedProduitsUser).forEach(p -> {
+                    prodsOL.add(p);
+                });
+
+                nomId.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                prixId.setCellValueFactory(new PropertyValueFactory<>("prix"));
+                descriptionId.setCellValueFactory(new PropertyValueFactory<>("description"));
+                emailId.setCellValueFactory(new PropertyValueFactory<>("userEmail"));
+
+                tableViewProds.setItems(prodsOL);
+
+
+        
+
+
+    }
+    
     public void populateTypesCatsLists() throws SQLException {
 
         ObservableList<String> typesOL = FXCollections.observableArrayList("Consommable", "electro-menager","Automobile","electrique","téléphone","Consmétique");
@@ -220,21 +266,22 @@ public class MesProduitsController {
         cbViewCategories.setItems(catOL);
     }
 
-    @FXML
-    public void getDetails(MouseEvent event) throws IOException, SQLException {
-        System.out.println("Controller.MesProduitsController.getDetails()");
-        //change image
+
+
+        @FXML
+    public void getDetails(MouseEvent event){
+
         if (event.getClickCount() == 2) //Checking double click
         {
-
-            String imgName = tableViewProds.getSelectionModel().getSelectedItem().getImageName();
-            
-            String imToDisplay = ((imgName == null) || imgName.equals("")) ? "0.png" : imgName;
-//            
-        System.out.println("------------------"+imToDisplay);
-
-            Image im = new Image("/images_prod/" + imToDisplay);
-            imgId.setImage(im);
+            try {
+                this.currentProduit = ps.getProduitById(tableViewProds.getSelectionModel().getSelectedItem().getId());
+                
+                DetailsProduitController tac = new DetailsProduitController(this);
+                
+                tac.showStage();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
 
         }
     }
@@ -287,7 +334,7 @@ public class MesProduitsController {
     ///*
     public void refreshList() throws SQLException {
 //        tableViewProds.getItems().clear();
-        populateProduitsTable();
+        populateProduitsTableStatique();
     }
 
     public void clear() {
@@ -339,6 +386,7 @@ public class MesProduitsController {
 
         }
     }
+    
 
     @FXML
     public void initialize() throws SQLException {
@@ -353,14 +401,10 @@ public class MesProduitsController {
 
         populateTypesCatsLists();
 
-        tableViewProds.setOnMouseClicked(event -> {
-            try {
+     tableViewProds.setOnMouseClicked(event -> {
+            
                 getDetails(event);
-            } catch (IOException ex) {
-                Logger.getLogger(MesProduitsController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(MesProduitsController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
         });
 
         //delete

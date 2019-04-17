@@ -124,6 +124,7 @@ public class ProduitService implements IProduitService {
                             res.getString("image_name"),
                             res.getString("type_prod"),
                             res.getString("cat_prod")
+                            
                     )
             );
             i++;
@@ -152,7 +153,8 @@ public class ProduitService implements IProduitService {
                     us.getUserById((Integer) rs.getObject("user_id")),
                     rs.getString("image_name"),
                     rs.getString("type_prod"),
-                    rs.getString("cat_prod")
+                    rs.getString("cat_prod"),
+                    rs.getDate("date")
             );
         }
 

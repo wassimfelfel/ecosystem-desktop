@@ -39,7 +39,6 @@ public class DetailsProduitController {
     
     @FXML
     private JFXButton btnSave;
-    
 
     @FXML
     private JFXButton btnCancel;
@@ -54,9 +53,6 @@ public class DetailsProduitController {
     private JFXTextField txtPrix;
 
     @FXML
-    private Label txtDate;
-
-    @FXML
     private ImageView imgId;
 
     @FXML
@@ -67,7 +63,7 @@ public class DetailsProduitController {
     
     
     private Stage thisStage;
-    private MesProduitsController mesProduitsController;
+    public  MesProduitsController mesProduitsController;
 
     private entities.Produit myProduit;
     ProduitService ts = new ProduitService();
@@ -81,7 +77,7 @@ public class DetailsProduitController {
         thisStage = new Stage();
         // Load the FXML file
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProduitAdminView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/DetailsProduit.fxml"));
             // Set this class as the controller
             loader.setController(this);
             // Load the scene
@@ -104,10 +100,18 @@ public class DetailsProduitController {
 
     public void populateDetails() {
         //populate with details
+        System.out.println(mesProduitsController.getCurrentProduit().getImageName());
+        System.out.println(mesProduitsController.getCurrentProduit().getId());
+        System.out.println(mesProduitsController.getCurrentProduit().getPrix());
+        System.out.println(mesProduitsController.getCurrentProduit().getDescription());
+        
+        
+        
+        
         txtNom.setText(mesProduitsController.getCurrentProduit().getNom());
         txtDescription.setText(mesProduitsController.getCurrentProduit().getDescription());
-        txtPrix.setText(mesProduitsController.getCurrentProduit().getPrix().toString());
-        txtDate.setText(mesProduitsController.getCurrentProduit().getDate().toString());
+       // txtPrix.setText(mesProduitsController.getCurrentProduit().getPrix().toString());
+//        txtDate.setText(mesProduitsController.getCurrentProduit().getDate().toString());
 
         String imgName = mesProduitsController.getCurrentProduit().getImageName();
 
@@ -127,7 +131,7 @@ public class DetailsProduitController {
     private void updateProduit() throws SQLException {
 
         
-        System.out.println("fdlkhqsdlkfhqsldkfh");
+       
         String newNom = txtNom.getText();
         String newDescription = txtDescription.getText();
         Double newPrix = Double.parseDouble( txtPrix.getText().toString());
@@ -209,10 +213,10 @@ public class DetailsProduitController {
 
         //getting the selected Produit from the list
         myProduit = mesProduitsController.getCurrentProduit();
-
-
+//
+//
         populateDetails();
-
+//
         //save the changes 
         btnSave.setOnAction(value -> {
             try {

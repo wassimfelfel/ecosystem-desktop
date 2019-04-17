@@ -140,7 +140,7 @@ public class Produit implements Serializable {
     
         
     UserService us = new UserService();
-      public Produit(Integer id,String nom, String description, Double prix,FosUser u ,String imageName,String type,String categorie) throws SQLException {
+      public Produit(Integer id,String nom, String description, Double prix,FosUser u ,String imageName,String type,String categorie,Date date) throws SQLException {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -150,6 +150,20 @@ public class Produit implements Serializable {
         this.type=type;
         this.categorie=categorie;
         this.userId=u;
+        this.date=date;
+    }
+    
+         public Produit(Integer id,String nom, String description, Double prix,FosUser u ,String imageName,String type,String categorie) throws SQLException {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.prix = prix;
+        this.imageName = imageName;
+        this.userEmail=us.getUserById(u.getId()).getEmail();
+        this.type=type;
+        this.categorie=categorie;
+        this.userId=u;
+       
     }
     
  
