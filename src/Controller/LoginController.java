@@ -100,6 +100,7 @@ public class LoginController {
         stage.setTitle("Register Now !");
         stage.setScene(new Scene(root1));
         stage.show();
+        
 //        this.hide(event);
     }
 

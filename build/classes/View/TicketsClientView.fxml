@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox layoutX="730.0" layoutY="35.0" prefHeight="63.0" prefWidth="240.0" />
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="378.0" layoutY="116.0" prefHeight="50.0" prefWidth="215.0" styleClass="card-title" text="Liste des tickets" textFill="#009685" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -26,14 +26,14 @@
             <TableColumn fx:id="statutId" prefWidth="110.0" text="Statut" />
             <TableColumn fx:id="descriptionId" prefWidth="310.0" text="Description" />
             <TableColumn fx:id="dateId" prefWidth="107.0" text="Created At" />
-            <TableColumn fx:id="emEmail" prefWidth="98.0" text="Emetteur" />
-            <TableColumn fx:id="recEmail" prefWidth="115.0" text="Recepteur" />
+            <TableColumn fx:id="emEmail" prefWidth="195.33331298828125" text="Emetteur" />
+            <TableColumn fx:id="recEmail" prefWidth="249.3333740234375" text="Recepteur" />
         </columns>
       </TableView>
         <HBox prefHeight="88.0" prefWidth="970.0" style="-fx-background-color: #009685;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <HBox layoutX="314.0" layoutY="486.0" prefHeight="34.0" prefWidth="330.0" AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="486.0">
+        <HBox layoutX="437.0" layoutY="597.0" prefHeight="34.0" prefWidth="330.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="437.0" AnchorPane.rightAnchor="203.0" AnchorPane.topAnchor="597.0">
             <children>
-            <Button fx:id="btnAdd" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="68.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Add" textAlignment="CENTER" textFill="#009685">
+            <Button fx:id="btnAdd" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Add" textAlignment="CENTER" textFill="#009685">
                <font>
                   <Font name="Eras Bold ITC" size="18.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Insets left="40.0" right="20.0" />
                </HBox.margin>
             </Button>
-                <Button fx:id="btnDelete" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Delete" textAlignment="CENTER" textFill="#009685">
+                <Button fx:id="btnDelete" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Delete" textAlignment="CENTER" textFill="#009685">
                     <font>
                         <Font name="Eras Bold ITC" size="18.0" />
                     </font>
@@ -51,24 +51,24 @@
                 </Button>
             </children>
         </HBox>
-      <HBox layoutX="48.0" layoutY="550.0" prefHeight="64.0" prefWidth="870.0" AnchorPane.leftAnchor="40.0">
+      <HBox layoutX="32.0" layoutY="646.0" prefHeight="64.0" prefWidth="915.0" AnchorPane.leftAnchor="32.0">
          <children>
-            <JFXTextField fx:id="sujetToFocus" prefHeight="22.0" prefWidth="78.0" promptText="Sujet">
+            <JFXTextField fx:id="sujetToFocus" prefHeight="25.0" prefWidth="107.0" promptText="Sujet">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </JFXTextField>
-            <JFXTextField fx:id="txtDescription" prefHeight="22.0" prefWidth="103.0" promptText="Description">
+            <JFXTextField fx:id="txtDescription" prefHeight="25.0" prefWidth="161.0" promptText="Description">
                <HBox.margin>
                   <Insets right="30.0" top="20.0" />
                </HBox.margin>
             </JFXTextField>
-            <JFXComboBox fx:id="listViewRecepteurs" promptText="Recepteur">
+            <JFXComboBox fx:id="listViewRecepteurs" prefHeight="25.0" prefWidth="229.0" promptText="Recepteur">
                <HBox.margin>
                   <Insets right="50.0" top="20.0" />
                </HBox.margin>
             </JFXComboBox>
-            <Button fx:id="btnLoadImg" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="159.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Load Image" textAlignment="CENTER" textFill="#009685">
+            <Button fx:id="btnLoadImg" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="254.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Load Image" textAlignment="CENTER" textFill="#009685">
                <font>
                   <Font name="Eras Bold ITC" size="18.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Insets right="50.0" top="25.0" />
                </HBox.margin>
             </Label>
-                <Button fx:id="btnSave" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Save" textAlignment="CENTER" textFill="#009685">
+                <Button fx:id="btnSave" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="151.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Save" textAlignment="CENTER" textFill="#009685">
                     <font>
                         <Font name="Eras Bold ITC" size="18.0" />
                     </font>
@@ -89,7 +89,7 @@
                   <Insets right="10.0" top="15.0" />
                </HBox.margin>
                 </Button>
-                <Button fx:id="btnReset" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Reset" textAlignment="CENTER" textFill="#009685">
+                <Button fx:id="btnReset" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Reset" textAlignment="CENTER" textFill="#009685">
                     <font>
                         <Font name="Eras Bold ITC" size="18.0" />
                     </font>

@@ -18,8 +18,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -30,6 +33,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import services.UserService;
 
@@ -124,6 +128,18 @@ public class RegisterController implements Initializable {
 
         }
     }
+        @FXML
+    void GoToLogin(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/login.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Register Now !");
+        stage.setScene(new Scene(root1));
+        stage.show();
+        
+//        this.hide(event);
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,6 +152,7 @@ public class RegisterController implements Initializable {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+            
     }
 
     @FXML
