@@ -140,6 +140,7 @@ public class RegisterController implements Initializable {
         
 //        this.hide(event);
     }
+
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -174,6 +175,10 @@ public class RegisterController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText(user.getUsername() + "  a été enregistré avec succés");
             alert.show();
+         
+        
+            
+            
 
         }
     }

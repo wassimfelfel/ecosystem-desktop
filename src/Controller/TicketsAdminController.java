@@ -7,9 +7,13 @@ import entities.FosUser;
 import entities.Ticket;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +35,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
 import services.TicketService;
 import services.UserService;
+import utils.ConnexionDBJ;
 
 public class TicketsAdminController {
 
@@ -62,7 +72,8 @@ public class TicketsAdminController {
 
     @FXML
     private Button btnReset;
-
+ @FXML
+    private Button xlid;
     @FXML
     private JFXTextField sujetToFocus;
 
@@ -178,6 +189,93 @@ public class TicketsAdminController {
             tac.showStage();
 
         }
+    }
+        //excel fct
+    private void Excel(File file) throws FileNotFoundException, IOException, SQLException {
+       
+
+        try {
+            //System.out.println("Clicked,waiting to export....");
+            
+            FileOutputStream fileOut;
+            fileOut = new FileOutputStream(file);
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet workSheet = workbook.createSheet("sheet 0");
+            
+        workSheet.setColumnWidth(1, 25);
+
+        HSSFFont fontBold = workbook.createFont();
+        fontBold.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        HSSFCellStyle styleBold = workbook.createCellStyle();
+        styleBold.setFont(fontBold);
+
+          
+            Row row1 = workSheet.createRow((short) 0);
+           workSheet.autoSizeColumn(7);
+            row1.createCell(0).setCellValue("id");
+            row1.createCell(1).setCellValue("Sujet");
+            row1.createCell(2).setCellValue("Description");
+            row1.createCell(3).setCellValue("RecepteurMail");
+            row1.createCell(4).setCellValue("EmeteurMail"); 
+            row1.createCell(5).setCellValue("DatedeCreation ");
+           
+
+          
+                  
+          
+           
+            Row row2;
+
+            String req = "SELECT * from ticket ";
+            
+            Connection Connection = ConnexionDBJ.getInstance().getConnection();
+            Connection c = Connection;
+            PreparedStatement ps = c.prepareStatement(req);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int a = rs.getRow();
+                row2 = workSheet.createRow((short) a); 
+               
+                row2.createCell(0).setCellValue(rs.getInt(1));
+                row2.createCell(1).setCellValue(rs.getString(4));
+                row2.createCell(2).setCellValue(rs.getString(2));
+                row2.createCell(3).setCellValue(rs.getString(6));
+                row2.createCell(4).setCellValue(rs.getString(7));
+                row2.createCell(5).setCellValue(rs.getDate(5));
+                
+                
+           
+        
+             
+               
+            }
+            workbook.write(fileOut);
+            fileOut.flush();
+            fileOut.close();
+            rs.close();
+
+        
+        } catch (SQLException e) {
+            System.out.println("Controll.TicketsAdminController.ExcelAction()"); 
+
+        }
+    }
+        
+    //escel fct
+@FXML
+    private void ExcelAction(ActionEvent event) throws IOException, FileNotFoundException, SQLException{
+        FileChooser chooser = new FileChooser();
+        // Set extension filter
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Excel Files(*.xls)", "*.xls");
+        chooser.getExtensionFilters().add(filter);
+        // Show save dialog
+        File file = chooser.showSaveDialog(xlid.getScene().getWindow());
+        if (file != null) {
+            Excel(file);
+
+        }
+        
+        
     }
 
     public void delete() {

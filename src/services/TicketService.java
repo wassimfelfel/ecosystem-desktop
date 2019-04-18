@@ -72,6 +72,7 @@ public class TicketService implements ITicketService {
             System.out.println(ex.getMessage());
         }
     }
+    
 
     @Override
     public List<Ticket> afficherTickets() {

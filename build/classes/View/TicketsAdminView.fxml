@@ -49,6 +49,11 @@
                         <Insets right="20.0" />
                     </HBox.margin>
                 </Button>
+            <Button alignment="CENTER" layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExcelAction" prefHeight="34.0" prefWidth="91.0" style="-fx-background-color: CBCBCB; -fx-background-radius: 10px; -fx-border-radius: 10-px;" text="Add" textAlignment="CENTER" textFill="#009685" fx:id="xlid">
+               <font>
+                  <Font name="Eras Bold ITC" size="18.0" />
+               </font>
+            </Button>
             </children>
         </HBox>
       <HBox layoutX="40.0" layoutY="671.0" prefHeight="64.0" prefWidth="870.0" AnchorPane.leftAnchor="40.0">

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="registrate" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
+<AnchorPane id="AnchorPane" fx:id="registrate" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
    <children>
       <VBox alignment="CENTER" prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #009685;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,7 +40,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField fx:id="txtPwd" promptText="Password">
+            <JFXTextField fx:id="txtPwd" accessibleRole="PASSWORD_FIELD" promptText="Password">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>

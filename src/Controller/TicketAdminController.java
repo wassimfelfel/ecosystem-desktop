@@ -6,9 +6,13 @@ import com.jfoenix.controls.JFXTextField;
 import entities.Message;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +34,14 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
 import services.MessageService;
 import services.TicketService;
+import utils.ConnexionDBJ;
 
 public class TicketAdminController {
 
@@ -114,7 +124,90 @@ public class TicketAdminController {
         }
 
     }
+    //excel fct
+    private void Excel(File file) throws FileNotFoundException, IOException, SQLException {
+       
 
+        try {
+            //System.out.println("Clicked,waiting to export....");
+            
+            FileOutputStream fileOut;
+            fileOut = new FileOutputStream(file);
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet workSheet = workbook.createSheet("sheet 0");
+            
+        workSheet.setColumnWidth(1, 25);
+
+        HSSFFont fontBold = workbook.createFont();
+        fontBold.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        HSSFCellStyle styleBold = workbook.createCellStyle();
+        styleBold.setFont(fontBold);
+
+          
+            Row row1 = workSheet.createRow((short) 0);
+           workSheet.autoSizeColumn(7);
+            row1.createCell(0).setCellValue("id");
+            row1.createCell(1).setCellValue("nom");
+            row1.createCell(2).setCellValue("email");
+            row1.createCell(3).setCellValue("adresse");
+            row1.createCell(4).setCellValue("siteWeb"); 
+            row1.createCell(5).setCellValue("domaine ");
+            row1.createCell(6).setCellValue("telephone");
+            row1.createCell(7).setCellValue("session");
+            row1.createCell(8).setCellValue("logo");
+            row1.createCell(9).setCellValue("status");
+            row1.createCell(10).setCellValue("nbOffre");
+            row1.createCell(11).setCellValue("nbPres");
+            row1.createCell(12).setCellValue("sponsored_offers");
+
+          
+                  
+          
+           
+            Row row2;
+
+            String req = "SELECT * from ticket ";
+            
+            Connection Connection = ConnexionDBJ.getInstance().getConnection();
+            Connection c = Connection;
+            PreparedStatement ps = c.prepareStatement(req);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int a = rs.getRow();
+                row2 = workSheet.createRow((short) a); 
+               
+                row2.createCell(0).setCellValue(rs.getInt(1));
+                row2.createCell(1).setCellValue(rs.getString(2));
+                row2.createCell(2).setCellValue(rs.getString(3));
+                row2.createCell(3).setCellValue(rs.getString(4));
+                row2.createCell(4).setCellValue(rs.getString(5));
+                row2.createCell(5).setCellValue(rs.getString(6));
+                row2.createCell(6).setCellValue(rs.getInt(8));
+                row2.createCell(7).setCellValue(rs.getString(9));
+                row2.createCell(8).setCellValue(rs.getString(10));
+                row2.createCell(9).setCellValue(rs.getString(11));
+                row2.createCell(10).setCellValue(rs.getInt(12));
+                row2.createCell(11).setCellValue(rs.getInt(13));
+                row2.createCell(12).setCellValue(rs.getInt(14));
+                
+           
+        
+             
+               
+            }
+            workbook.write(fileOut);
+            fileOut.flush();
+            fileOut.close();
+            rs.close();
+
+        
+        } catch (SQLException e) {
+            System.out.println("Controll.Entreprise.entreprise.EntreListAdminController.ExcelAction()"); 
+
+        }
+    }
+        
+    //escel fct
     public void showStage() {
         thisStage.show();
     }

@@ -100,17 +100,11 @@ public class DetailsProduitController {
 
     public void populateDetails() {
         //populate with details
-        System.out.println(mesProduitsController.getCurrentProduit().getImageName());
-        System.out.println(mesProduitsController.getCurrentProduit().getId());
-        System.out.println(mesProduitsController.getCurrentProduit().getPrix());
-        System.out.println(mesProduitsController.getCurrentProduit().getDescription());
-        
-        
-        
+    
         
         txtNom.setText(mesProduitsController.getCurrentProduit().getNom());
         txtDescription.setText(mesProduitsController.getCurrentProduit().getDescription());
-       // txtPrix.setText(mesProduitsController.getCurrentProduit().getPrix().toString());
+       txtPrix.setText(mesProduitsController.getCurrentProduit().getPrix().toString());
 //        txtDate.setText(mesProduitsController.getCurrentProduit().getDate().toString());
 
         String imgName = mesProduitsController.getCurrentProduit().getImageName();
@@ -119,7 +113,8 @@ public class DetailsProduitController {
 
         System.out.println(imgName);
 //        System.exit(0);
-        Image im = new Image("/images/" + imToDisplay);
+System.out.println(imToDisplay);
+        Image im = new Image("/images_prod/" + imToDisplay);
         imgId.setImage(im);
     }
 
@@ -143,6 +138,7 @@ public class DetailsProduitController {
         mesProduitsController.refreshList();
 
         refreshImage();
+        
 
         //alert updated or exit 
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
@@ -170,7 +166,7 @@ public class DetailsProduitController {
             Image im = new Image("file:///" + file.toPath().toString());
 
             imgNameLabel.setText(file.getName());
-            String p = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\PIjava\\src\\images\\" + imgNameLabel.getText();
+            String p = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\NetBeansProjects\\PIjava\\src\\images_prod\\" + imgNameLabel.getText();
 
 
             File file2 = new File(p);

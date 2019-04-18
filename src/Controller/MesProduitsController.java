@@ -424,18 +424,8 @@ public class MesProduitsController {
         //clear fiels
         btnReset.setOnAction(value -> clear());
 
-        //fill image 
-        Image im = new Image("/images_prod/" + "0.png");
-        imgId.setImage(im);
-
-        //load image 
-        btnLoadImg.setOnAction(event -> {
-            try {
-                loadImage(event);
-            } catch (IOException ex) {
-                Logger.getLogger(MesProduitsController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+     
+        
 
     }
 

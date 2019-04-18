@@ -49,9 +49,19 @@ public class UserService implements IUserService {
     public void modifUser(FosUser u, String newUserName, String newEmail, String newPassword, String newImageName) {
 
     }
+ 
 
     @Override
     public void supprUser(FosUser u) {
+        String req = "DELETE FROM fos_user WHERE id=" + u.getId();
+         try {
+            ste.executeUpdate(req);
+            System.out.println("user supprimé ");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
 
     @Override
